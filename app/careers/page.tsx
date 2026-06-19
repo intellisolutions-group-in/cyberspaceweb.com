@@ -5,27 +5,42 @@ import ContentSection from "@/components/sections/ContentSection";
 import CareersList from "@/components/ui/CareersList";
 import CTASection from "@/components/sections/CTASection";
 import MotionCard from "@/components/motion/MotionCard";
+import JsonLd from "@/components/seo/JsonLd";
 import { company } from "@/data/company";
 import { jobs } from "@/data/careers";
+import { breadcrumbSchema, jobPostingSchema, webPageSchema } from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+const description = `Explore software development, frontend, backend, full stack, UI/UX, QA, and business analyst roles at ${company.brandName}. Location: ${company.careerLocation}.`;
+
+export const metadata: Metadata = createPageMetadata({
   title: `Careers at ${company.brandName} | Software Jobs`,
-  description:
-    `Explore software development, frontend, backend, full stack, UI/UX, QA, and business analyst roles at ${company.brandName}. Location: ${company.careerLocation}.`,
+  description,
+  path: "/careers/",
   keywords: ["software careers India remote", "developer jobs", company.brandName],
   openGraph: {
     title: `Careers at ${company.brandName}`,
     description: "Open roles for software delivery, design, quality, and product analysis.",
-    url: `${company.url}/careers/`,
-    siteName: company.brandName,
-    type: "website",
-    locale: "en_IN",
   },
-};
+});
 
 export default function CareersPage() {
   return (
     <SiteShell>
+      <JsonLd
+        data={[
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Careers", path: "/careers/" },
+          ]),
+          ...jobs.map((job) => jobPostingSchema(job)),
+          webPageSchema({
+            title: `Careers at ${company.brandName}`,
+            description,
+            path: "/careers/",
+          }),
+        ]}
+      />
       <PageHero
         label="[CAREERS] // BUILD WITH US"
         title={"WORK ON\nREAL SOFTWARE."}

@@ -62,7 +62,7 @@ export const jobs: Job[] = [
     requirements: [
       "Strong portfolio of web or application interface work",
       "Ability to simplify complex workflows into usable layouts",
-      "Experience with Figma and design systems",
+      "Experience with design tools and design systems",
       "Understanding of accessibility, responsive design, and developer handoff",
     ],
   },

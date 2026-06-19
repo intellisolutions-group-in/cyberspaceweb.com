@@ -4,27 +4,41 @@ import PageHero from "@/components/sections/PageHero";
 import ContentSection from "@/components/sections/ContentSection";
 import CTASection from "@/components/sections/CTASection";
 import MotionCard from "@/components/motion/MotionCard";
+import JsonLd from "@/components/seo/JsonLd";
 import { company } from "@/data/company";
 import { portfolioItems } from "@/data/portfolio";
+import { breadcrumbSchema, webPageSchema } from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+const description = `View generic software project examples from ${company.brandName}, including web applications, mobile tools, modernisation, e-commerce, PWAs, reporting, and APIs.`;
+
+export const metadata: Metadata = createPageMetadata({
   title: `Portfolio and Case Studies | ${company.brandName}`,
-  description:
-    `View generic software project examples from ${company.brandName}, including web applications, mobile tools, modernisation, e-commerce, PWAs, reporting, and APIs.`,
+  description,
+  path: "/portfolio/",
   keywords: ["software portfolio", "case studies software development", company.brandName],
   openGraph: {
     title: `Portfolio | ${company.brandName}`,
     description: "Generic project examples for software development, modernisation, reporting, APIs, and websites.",
-    url: `${company.url}/portfolio/`,
-    siteName: company.brandName,
-    type: "website",
-    locale: "en_IN",
   },
-};
+});
 
 export default function PortfolioPage() {
   return (
     <SiteShell>
+      <JsonLd
+        data={[
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Portfolio", path: "/portfolio/" },
+          ]),
+          webPageSchema({
+            title: `Portfolio | ${company.brandName}`,
+            description,
+            path: "/portfolio/",
+          }),
+        ]}
+      />
       <PageHero
         label="[PORTFOLIO] // GENERIC CASE STUDIES"
         title={"PROJECT PATTERNS\nWITHOUT FALSE CLAIMS."}

@@ -4,35 +4,49 @@ import PageHero from "@/components/sections/PageHero";
 import ContentSection from "@/components/sections/ContentSection";
 import CTASection from "@/components/sections/CTASection";
 import MotionCard from "@/components/motion/MotionCard";
+import JsonLd from "@/components/seo/JsonLd";
 import { company } from "@/data/company";
+import { breadcrumbSchema, webPageSchema } from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+const description = `Reasons to choose ${company.brandName} for practical, maintainable software development, modern web platforms, and business applications in India.`;
+
+export const metadata: Metadata = createPageMetadata({
   title: `Why Choose ${company.brandName} | IT and Software Development India`,
-  description:
-    `Reasons to choose ${company.brandName} for practical, maintainable software development, modern web platforms, and business applications in India.`,
+  description,
+  path: "/why-choose-us/",
   keywords: ["why choose software development company", "IT services India", company.brandName],
   openGraph: {
     title: `Why Choose ${company.brandName}`,
     description: "A practical software development partner for Indian businesses that need clarity, maintainability, and dependable delivery.",
-    url: `${company.url}/why-choose-us/`,
-    siteName: company.brandName,
-    type: "website",
-    locale: "en_IN",
   },
-};
+});
 
 const reasons = [
   ["BUSINESS-FIRST DISCOVERY", "We begin with the workflow, user groups, constraints, and measurable goals before recommending screens, stacks, or timelines."],
   ["MAINTAINABLE ARCHITECTURE", "The codebase, data model, and integrations are planned so future enhancements do not become expensive rewrites."],
   ["INDIA-FOCUSED COMMUNICATION", "Content, delivery assumptions, support expectations, and business tone are shaped for Indian companies and users."],
   ["PHASED DELIVERY", "Projects can be split into practical milestones so teams launch essentials first and improve based on real feedback."],
-  ["NO FALSE CLAIMS", "The website and project approach avoid invented awards, partnerships, client names, or certifications that were not provided."],
+  ["NO FALSE CLAIMS", "The website and project approach avoid invented client names or unsupported claims that were not provided."],
   ["SUPPORT AFTER LAUNCH", "Maintenance, improvements, testing, and modernisation can continue after the first version goes live."],
 ];
 
 export default function WhyChooseUsPage() {
   return (
     <SiteShell>
+      <JsonLd
+        data={[
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Why Choose Us", path: "/why-choose-us/" },
+          ]),
+          webPageSchema({
+            title: `Why Choose ${company.brandName}`,
+            description,
+            path: "/why-choose-us/",
+          }),
+        ]}
+      />
       <PageHero
         label="[WHY CHOOSE US] // PRACTICAL DIFFERENCE"
         title={"CLEAR SOFTWARE.\nLESS NOISE."}
@@ -44,13 +58,13 @@ export default function WhyChooseUsPage() {
         title={"BUILT FOR TEAMS\nTHAT NEED SOFTWARE TO WORK."}
       >
         <div className="grid gap-[2px] md:grid-cols-2 xl:grid-cols-3">
-          {reasons.map(([title, description], index) => (
+          {reasons.map(([title, descriptionText], index) => (
             <MotionCard key={title} index={index} className="flex min-h-[260px] flex-col gap-5 border border-[#2D2D2D] bg-[#101010] p-7 transition-colors hover:border-[#FFD600] md:p-8">
               <span className="font-grotesk text-[42px] font-bold tracking-[-2px] text-[#FFD600]">
                 {String(index + 1).padStart(2, "0")}
               </span>
               <h2 className="font-grotesk text-[22px] font-bold tracking-[1px] text-[#F5F5F0]">{title}</h2>
-              <p className="font-ibm-mono text-[12px] leading-[1.7] tracking-[1px] text-[#777777]">{description}</p>
+              <p className="font-ibm-mono text-[12px] leading-[1.7] tracking-[1px] text-[#777777]">{descriptionText}</p>
             </MotionCard>
           ))}
         </div>

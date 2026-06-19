@@ -99,6 +99,6 @@ export const faqs: FAQItem[] = [
     category: "BUSINESS",
     question: "WILL YOU USE REAL CLIENT NAMES OR LOGOS ON THIS WEBSITE?",
     answer:
-      "No. Real client names, logos, certifications, partnerships, or awards are only shown when they are provided and approved. The current portfolio examples are generic and illustrative.",
+      "No. Real client names or logos are only shown when they are provided and approved. The current portfolio examples are generic and illustrative.",
   },
 ];

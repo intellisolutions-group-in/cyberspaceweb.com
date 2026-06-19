@@ -1,14 +1,25 @@
 import Link from "next/link";
-import { company, footerColumns } from "@/data/company";
+import BrandLogo from "@/components/ui/BrandLogo";
+import {
+  company,
+  footerColumns,
+  formatOfficeAddress,
+  getPhone,
+  getPrimaryOffice,
+  getSocialLinks,
+} from "@/data/company";
 
 export default function Footer() {
+  const phone = getPhone();
+  const office = getPrimaryOffice();
+  const socialLinks = getSocialLinks();
+
   return (
     <footer className="flex w-full flex-col bg-[#050505]">
       <div className="flex flex-col gap-12 px-6 py-12 md:flex-row md:gap-[80px] md:px-[120px] md:py-[64px]">
         <div className="flex flex-col gap-6 md:w-[320px] md:shrink-0">
           <div className="flex items-center gap-[12px]">
-            {/* Logo placeholder: replace with an image when /images/logo.svg is available. */}
-            <div className="h-[32px] w-[32px] shrink-0 bg-[#FFD600]" />
+            <BrandLogo size="md" />
             <span className="font-grotesk text-[16px] font-bold tracking-[2px] text-[#FFD600]">
               {company.brandName}
             </span>
@@ -20,13 +31,35 @@ export default function Footer() {
             <a href={`mailto:${company.email}`} className="font-ibm-mono text-[11px] tracking-[1px] text-[#FFD600] hover:text-[#F5F5F0]">
               {company.email}
             </a>
+            {phone && (
+              <a href={`tel:${phone.replace(/\s/g, "")}`} className="font-ibm-mono text-[11px] tracking-[1px] text-[#888888] hover:text-[#F5F5F0]">
+                {phone}
+              </a>
+            )}
+            {office && (
+              <address className="not-italic font-ibm-mono text-[11px] leading-[1.7] tracking-[1px] text-[#666666]">
+                {office.label}: {formatOfficeAddress(office)}
+              </address>
+            )}
             <span className="font-ibm-mono text-[11px] tracking-[1px] text-[#666666]">
               EST. {company.establishedYear} // {company.country.toUpperCase()}
             </span>
           </div>
-          {/*
-            Social links are intentionally not displayed until real Instagram or Facebook URLs are provided.
-          */}
+          {socialLinks.length > 0 && (
+            <div className="flex flex-wrap gap-4">
+              {socialLinks.map((link) => (
+                <a
+                  key={link.key}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-ibm-mono text-[10px] font-bold tracking-[2px] text-[#555555] transition-colors hover:text-[#FFD600]"
+                >
+                  {link.label.toUpperCase()}
+                </a>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="grid grid-cols-2 gap-8 md:flex md:flex-1 md:gap-[80px]">

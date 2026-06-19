@@ -37,7 +37,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "When custom software becomes necessary",
         paragraphs: [
-          "Custom development is usually justified when data must move between systems, users need different permissions, or the product is part of daily operations rather than marketing alone. Examples include internal portals, field service tools, distributor ordering, compliance reporting, and customer self-service tied to backend records.",
+          "Custom development is usually justified when data must move between systems, users need different permissions, or the product is part of daily operations rather than marketing alone. Examples include internal portals, field service tools, distributor ordering, audit reporting, and customer self-service tied to backend records.",
           "Another signal is repeated manual work: exporting spreadsheets, copying data between apps, or maintaining parallel records because no single system reflects the truth.",
         ],
       },
@@ -289,7 +289,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "Set priorities and constraints",
         paragraphs: [
-          "Identify must-have items for the first release, nice-to-have items for later, and any fixed dates driven by business events. Mention budget flexibility, compliance needs, languages, and support expectations if they matter.",
+          "Identify must-have items for the first release, nice-to-have items for later, and any fixed dates driven by business events. Mention budget flexibility, regulatory requirements, languages, and support expectations if they matter.",
           "Clear priorities help teams propose phased delivery instead of an all-or-nothing plan that is hard to launch.",
         ],
       },

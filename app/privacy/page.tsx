@@ -3,22 +3,23 @@ import SiteShell from "@/components/sections/SiteShell";
 import PageHero from "@/components/sections/PageHero";
 import ContentSection from "@/components/sections/ContentSection";
 import MotionCard from "@/components/motion/MotionCard";
+import JsonLd from "@/components/seo/JsonLd";
 import { company } from "@/data/company";
+import { breadcrumbSchema, webPageSchema } from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+const description = `Privacy Policy for ${company.domain} covering inquiry forms, career applications, contact details, and website usage information.`;
+
+export const metadata: Metadata = createPageMetadata({
   title: `Privacy Policy | ${company.brandName}`,
-  description:
-    `Privacy Policy for ${company.domain} covering inquiry forms, career applications, contact details, and website usage information.`,
+  description,
+  path: "/privacy/",
   keywords: ["privacy policy", company.brandName, "software company privacy"],
   openGraph: {
     title: `Privacy Policy | ${company.brandName}`,
     description: "Privacy information for website visitors, inquiries, and career applications.",
-    url: `${company.url}/privacy/`,
-    siteName: company.brandName,
-    type: "website",
-    locale: "en_IN",
   },
-};
+});
 
 const sections = [
   {
@@ -31,7 +32,7 @@ const sections = [
   },
   {
     title: "Form Behaviour",
-    text: "Normal inquiry forms on this static website use local validation and show a success message without making a real API call. The career application form is designed to make a fake submission request to the company domain endpoint described in the project brief.",
+    text: "Inquiry and career application forms on this static website use local validation and show a success message without making a real API call.",
   },
   {
     title: "Data Sharing",
@@ -50,6 +51,19 @@ const sections = [
 export default function PrivacyPage() {
   return (
     <SiteShell>
+      <JsonLd
+        data={[
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Privacy Policy", path: "/privacy/" },
+          ]),
+          webPageSchema({
+            title: `Privacy Policy | ${company.brandName}`,
+            description,
+            path: "/privacy/",
+          }),
+        ]}
+      />
       <PageHero
         label="[LEGAL] // PRIVACY"
         title={"PRIVACY\nPOLICY."}

@@ -5,27 +5,41 @@ import ContentSection from "@/components/sections/ContentSection";
 import ProcessGrid from "@/components/sections/ProcessGrid";
 import CTASection from "@/components/sections/CTASection";
 import MotionCard from "@/components/motion/MotionCard";
+import JsonLd from "@/components/seo/JsonLd";
 import { company } from "@/data/company";
 import { processSteps } from "@/data/process";
+import { breadcrumbSchema, webPageSchema } from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+const description = `See the ${company.brandName} software development process from discovery and architecture to design, build, validation, launch, and support.`;
+
+export const metadata: Metadata = createPageMetadata({
   title: `Our Development Process | ${company.brandName}`,
-  description:
-    `See the ${company.brandName} software development process from discovery and architecture to design, build, validation, launch, and support.`,
+  description,
+  path: "/our-process/",
   keywords: ["software development process", "development methodology India", company.brandName],
   openGraph: {
     title: `Our Development Process | ${company.brandName}`,
     description: "A clear software delivery process for websites, apps, APIs, databases, and custom business systems.",
-    url: `${company.url}/our-process/`,
-    siteName: company.brandName,
-    type: "website",
-    locale: "en_IN",
   },
-};
+});
 
 export default function OurProcessPage() {
   return (
     <SiteShell>
+      <JsonLd
+        data={[
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Our Process", path: "/our-process/" },
+          ]),
+          webPageSchema({
+            title: `Our Development Process | ${company.brandName}`,
+            description,
+            path: "/our-process/",
+          }),
+        ]}
+      />
       <PageHero
         label="[PROCESS] // DEVELOPMENT METHODOLOGY"
         title={"FROM DISCOVERY\nTO LAUNCH."}

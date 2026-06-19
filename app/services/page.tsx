@@ -5,30 +5,51 @@ import ContentSection from "@/components/sections/ContentSection";
 import CTASection from "@/components/sections/CTASection";
 import ServiceGrid from "@/components/sections/ServiceGrid";
 import MotionCard from "@/components/motion/MotionCard";
+import JsonLd from "@/components/seo/JsonLd";
 import { company } from "@/data/company";
 import { services } from "@/data/services";
+import { breadcrumbSchema, itemListSchema, webPageSchema } from "@/lib/schema";
+import { createPageMetadata, pageUrl } from "@/lib/seo";
 
-export const metadata: Metadata = {
+const description =
+  "Explore web development, mobile apps, custom software, APIs, databases, cloud applications, testing, and software consulting services for Indian businesses.";
+
+export const metadata: Metadata = createPageMetadata({
   title: `Software Development Services in India | ${company.brandName}`,
-  description:
-    "Explore web development, mobile apps, custom software, APIs, databases, cloud applications, testing, and software consulting services for Indian businesses.",
+  description,
+  path: "/services/",
   keywords: ["software development services India", "web development India", "custom software development", company.brandName],
   openGraph: {
     title: `Software Development Services | ${company.brandName}`,
     description:
       "A complete IT and software development service catalogue for business websites, apps, platforms, APIs, databases, and support.",
-    url: `${company.url}/services/`,
-    siteName: company.brandName,
-    type: "website",
-    locale: "en_IN",
   },
-};
+});
 
 const categories = Array.from(new Set(services.map((service) => service.category)));
 
 export default function ServicesPage() {
   return (
     <SiteShell>
+      <JsonLd
+        data={[
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Services", path: "/services/" },
+          ]),
+          itemListSchema(
+            services.map((service) => ({
+              name: service.title,
+              url: pageUrl(`/services/${service.slug}/`),
+            })),
+          ),
+          webPageSchema({
+            title: `Software Development Services | ${company.brandName}`,
+            description,
+            path: "/services/",
+          }),
+        ]}
+      />
       <PageHero
         label="[SERVICES] // IT AND SOFTWARE DEVELOPMENT"
         title={"SOFTWARE SERVICES\nFOR PRACTICAL GROWTH."}

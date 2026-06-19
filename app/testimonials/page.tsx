@@ -4,27 +4,42 @@ import PageHero from "@/components/sections/PageHero";
 import ContentSection from "@/components/sections/ContentSection";
 import CTASection from "@/components/sections/CTASection";
 import MotionCard from "@/components/motion/MotionCard";
+import JsonLd from "@/components/seo/JsonLd";
 import { company } from "@/data/company";
 import { testimonials } from "@/data/testimonials";
+import { breadcrumbSchema, webPageSchema } from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+const description =
+  "Read realistic testimonials for software development, UI/UX, API, QA, and custom application work without real company logos or client names.";
+
+export const metadata: Metadata = createPageMetadata({
   title: `Testimonials | ${company.brandName}`,
-  description:
-    "Read realistic testimonials for software development, UI/UX, API, QA, and custom application work without real company logos or client names.",
+  description,
+  path: "/testimonials/",
   keywords: ["software development testimonials", "IT project feedback", company.brandName],
   openGraph: {
     title: `Testimonials | ${company.brandName}`,
     description: "Human testimonial examples for software projects, without displaying real client company names or logos.",
-    url: `${company.url}/testimonials/`,
-    siteName: company.brandName,
-    type: "website",
-    locale: "en_IN",
   },
-};
+});
 
 export default function TestimonialsPage() {
   return (
     <SiteShell>
+      <JsonLd
+        data={[
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Testimonials", path: "/testimonials/" },
+          ]),
+          webPageSchema({
+            title: `Testimonials | ${company.brandName}`,
+            description,
+            path: "/testimonials/",
+          }),
+        ]}
+      />
       <PageHero
         label="[TESTIMONIALS] // PROJECT FEEDBACK"
         title={"WHAT CLIENTS\nMIGHT VALUE."}

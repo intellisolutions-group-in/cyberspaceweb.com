@@ -7,8 +7,11 @@ import ContentSection from "@/components/sections/ContentSection";
 import CTASection from "@/components/sections/CTASection";
 import ServiceGrid from "@/components/sections/ServiceGrid";
 import MotionCard from "@/components/motion/MotionCard";
+import JsonLd from "@/components/seo/JsonLd";
 import { company } from "@/data/company";
 import { getRelatedServices, getService, services } from "@/data/services";
+import { breadcrumbSchema, serviceSchema } from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
 
 export const dynamicParams = false;
 
@@ -28,9 +31,10 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   const title = `${service.title} in India | ${company.brandName}`;
   const description = `${service.summary} Work with ${company.brandName} for ${service.title.toLowerCase()} planned around business goals, maintainability, and reliable delivery.`;
 
-  return {
+  return createPageMetadata({
     title,
     description,
+    path: `/services/${service.slug}/`,
     keywords: [
       service.title,
       `${service.title} India`,
@@ -41,38 +45,8 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
     openGraph: {
       title,
       description,
-      url: `${company.url}/services/${service.slug}/`,
-      siteName: company.brandName,
-      type: "website",
-      locale: "en_IN",
     },
-  };
-}
-
-function ServiceSchema({ slug }: { slug: string }) {
-  const service = getService(slug);
-  if (!service) return null;
-
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: service.title,
-    serviceType: service.title,
-    provider: {
-      "@type": "Organization",
-      name: company.brandName,
-      url: company.url,
-      email: company.email,
-    },
-    areaServed: {
-      "@type": "Country",
-      name: company.country,
-    },
-    description: service.summary,
-    url: `${company.url}/services/${service.slug}/`,
-  };
-
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
+  });
 }
 
 export default async function ServiceDetailPage({ params }: ServicePageProps) {
@@ -84,7 +58,20 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
 
   return (
     <SiteShell>
-      <ServiceSchema slug={service.slug} />
+      <JsonLd
+        data={[
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Services", path: "/services/" },
+            { name: service.title, path: `/services/${service.slug}/` },
+          ]),
+          serviceSchema({
+            title: service.title,
+            summary: service.summary,
+            slug: service.slug,
+          }),
+        ]}
+      />
       <PageHero
         label={`[SERVICE] // ${service.category.toUpperCase()}`}
         title={service.title.toUpperCase()}

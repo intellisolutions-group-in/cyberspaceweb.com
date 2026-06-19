@@ -5,28 +5,42 @@ import ContentSection from "@/components/sections/ContentSection";
 import ProcessGrid from "@/components/sections/ProcessGrid";
 import CTASection from "@/components/sections/CTASection";
 import MotionCard from "@/components/motion/MotionCard";
+import JsonLd from "@/components/seo/JsonLd";
 import { company } from "@/data/company";
 import { values } from "@/data/process";
+import { breadcrumbSchema, webPageSchema } from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+const description = `Learn about ${company.brandName}, an India-focused IT and software development company established from its 2004 domain foundation.`;
+
+export const metadata: Metadata = createPageMetadata({
   title: `About ${company.brandName} | Software Development Company in India`,
-  description:
-    `Learn about ${company.brandName}, an India-focused IT and software development company established from its 2004 domain foundation.`,
+  description,
+  path: "/about/",
   keywords: [`about ${company.brandName}`, "software development company India", "IT company India"],
   openGraph: {
     title: `About ${company.brandName}`,
     description:
       "Company overview, mission, values, software development expertise, and India-focused business presence.",
-    url: `${company.url}/about/`,
-    siteName: company.brandName,
-    type: "website",
-    locale: "en_IN",
   },
-};
+});
 
 export default function AboutPage() {
   return (
     <SiteShell>
+      <JsonLd
+        data={[
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "About", path: "/about/" },
+          ]),
+          webPageSchema({
+            title: `About ${company.brandName}`,
+            description,
+            path: "/about/",
+          }),
+        ]}
+      />
       <PageHero
         label="[ABOUT] // COMPANY PROFILE"
         title={`${company.brandName}\nBUILT ON A 2004 DIGITAL FOUNDATION.`}
@@ -48,7 +62,7 @@ export default function AboutPage() {
               The domain was registered on {company.domainRegisteredDate}, and the establishment year is set as {company.establishedYear} based on that foundation. This gives the brand a long digital presence while keeping the current website fresh, modern, and ready for software service growth in India.
             </p>
             <p className="font-ibm-mono text-[13px] leading-[1.8] tracking-[1px] text-[#888888]">
-              The aim is to help teams replace scattered manual work with clear digital systems, improve customer-facing experiences, and create software that can be maintained over time. We avoid false claims, invented awards, and unnecessary complexity; the focus is useful engineering with clean communication.
+              The aim is to help teams replace scattered manual work with clear digital systems, improve customer-facing experiences, and create software that can be maintained over time. We avoid false claims and unnecessary complexity; the focus is useful engineering with clean communication.
             </p>
           </MotionCard>
           <div className="grid gap-[2px]">

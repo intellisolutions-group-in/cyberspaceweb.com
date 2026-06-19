@@ -46,5 +46,5 @@ Upload the contents of the `out` folder to any static hosting provider that supp
 ## Notes
 
 - Inquiry forms use local validation and show a success modal.
-- Career applications perform the fake endpoint request described in the brief.
+- Career applications use local validation and show a success modal.
 - No database, authentication, payment flow, chat widget, or newsletter signup is included.

@@ -6,6 +6,7 @@ import PageHero from "@/components/sections/PageHero";
 import ContentSection from "@/components/sections/ContentSection";
 import CTASection from "@/components/sections/CTASection";
 import BlogGrid from "@/components/sections/BlogGrid";
+import JsonLd from "@/components/seo/JsonLd";
 import { company } from "@/data/company";
 import {
   blogPosts,
@@ -13,6 +14,8 @@ import {
   getBlogPost,
   getRelatedPosts,
 } from "@/data/blog";
+import { articleSchema, breadcrumbSchema } from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
 
 export const dynamicParams = false;
 
@@ -31,49 +34,20 @@ export async function generateMetadata({ params }: BlogDetailPageProps): Promise
 
   const title = `${post.title} | ${company.brandName} Blog`;
 
-  return {
+  return createPageMetadata({
     title,
     description: post.excerpt,
+    path: `/blog/${post.slug}/`,
     keywords: [...post.tags, post.category, company.brandName, "software development India"],
+    type: "article",
+    publishedTime: post.publishedDate,
     openGraph: {
       title,
       description: post.excerpt,
-      url: `${company.url}/blog/${post.slug}/`,
-      siteName: company.brandName,
       type: "article",
-      locale: "en_IN",
       publishedTime: post.publishedDate,
     },
-  };
-}
-
-function ArticleSchema({ slug }: { slug: string }) {
-  const post = getBlogPost(slug);
-  if (!post) return null;
-
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: post.title,
-    description: post.excerpt,
-    datePublished: post.publishedDate,
-    author: {
-      "@type": "Organization",
-      name: company.brandName,
-      url: company.url,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: company.brandName,
-      url: company.url,
-      email: company.email,
-    },
-    mainEntityOfPage: `${company.url}/blog/${post.slug}/`,
-    keywords: post.tags.join(", "),
-    articleSection: post.category,
-  };
-
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
+  });
 }
 
 export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
@@ -85,7 +59,23 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
   return (
     <SiteShell>
-      <ArticleSchema slug={slug} />
+      <JsonLd
+        data={[
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Blog", path: "/blog/" },
+            { name: post.title, path: `/blog/${post.slug}/` },
+          ]),
+          articleSchema({
+            title: post.title,
+            excerpt: post.excerpt,
+            slug: post.slug,
+            publishedDate: post.publishedDate,
+            tags: post.tags,
+            category: post.category,
+          }),
+        ]}
+      />
       <PageHero
         label={`[BLOG] // ${post.category.toUpperCase()}`}
         title={post.title.toUpperCase()}

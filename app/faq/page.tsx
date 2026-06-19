@@ -4,27 +4,42 @@ import PageHero from "@/components/sections/PageHero";
 import ContentSection from "@/components/sections/ContentSection";
 import CTASection from "@/components/sections/CTASection";
 import FAQAccordion from "@/components/ui/FAQAccordion";
+import JsonLd from "@/components/seo/JsonLd";
 import { company } from "@/data/company";
 import { faqs } from "@/data/faq";
+import { breadcrumbSchema, faqPageSchema, webPageSchema } from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+const description = `Answers to common questions about software projects, process, technology, support, and business inquiries at ${company.brandName}.`;
+
+export const metadata: Metadata = createPageMetadata({
   title: `FAQ | ${company.brandName}`,
-  description:
-    `Answers to common questions about software projects, process, technology, support, and business inquiries at ${company.brandName}.`,
+  description,
+  path: "/faq/",
   keywords: ["software development FAQ", "IT services questions", company.brandName],
   openGraph: {
     title: `FAQ | ${company.brandName}`,
     description: "Common questions about projects, technology, support, and business engagement.",
-    url: `${company.url}/faq/`,
-    siteName: company.brandName,
-    type: "website",
-    locale: "en_IN",
   },
-};
+});
 
 export default function FAQPage() {
   return (
     <SiteShell>
+      <JsonLd
+        data={[
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "FAQ", path: "/faq/" },
+          ]),
+          faqPageSchema(faqs),
+          webPageSchema({
+            title: `FAQ | ${company.brandName}`,
+            description,
+            path: "/faq/",
+          }),
+        ]}
+      />
       <PageHero
         label="[FAQ] // COMMON QUESTIONS"
         title={"ANSWERS BEFORE\nTHE FIRST CALL."}

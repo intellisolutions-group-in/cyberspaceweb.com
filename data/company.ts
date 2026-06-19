@@ -1,3 +1,20 @@
+export type Office = {
+  label: string;
+  streetAddress: string;
+  addressLocality: string;
+  addressRegion: string;
+  postalCode: string;
+  addressCountry?: string;
+};
+
+export type SocialLinks = {
+  linkedin: string;
+  instagram: string;
+  facebook: string;
+  x: string;
+  youtube: string;
+};
+
 export const company = {
   brandName: "cyberspaceweb",
   domain: "cyberspaceweb.com",
@@ -9,15 +26,69 @@ export const company = {
   email: "info@cyberspaceweb.com",
   businessHours: "Monday to Saturday, 10:00 AM to 7:00 PM IST",
   defaultLocation: "India",
-  careerLocation: "India / Remote",
-  // phone: "+91 XXXXX XXXXX",
-  // offices: ["Office address to be added"],
-  // logo: "/images/logo.svg",
-  // socialLinks: {
-  //   instagram: "https://instagram.com/your-handle",
-  //   facebook: "https://facebook.com/your-page",
-  // },
-} as const;
+  careerLocation: "Remote",
+
+  // ── Fill in when ready. Leave empty to stay hidden from UI and structured data. ──
+  logo: "",
+  phone: "",
+  ogImage: "",
+  offices: [] as Office[],
+  socialLinks: {
+    linkedin: "",
+    instagram: "",
+    facebook: "",
+    x: "",
+    youtube: "",
+  } satisfies SocialLinks,
+};
+
+export function isConfigured(value: string | undefined | null): value is string {
+  return typeof value === "string" && value.trim().length > 0;
+}
+
+export function getLogoPath(): string | null {
+  return isConfigured(company.logo) ? company.logo : null;
+}
+
+export function getPhone(): string | null {
+  return isConfigured(company.phone) ? company.phone : null;
+}
+
+export function getOgImagePath(): string {
+  if (isConfigured(company.ogImage)) return company.ogImage;
+  if (isConfigured(company.logo)) return company.logo;
+  return "/og-default.svg";
+}
+
+export function getPrimaryOffice(): Office | null {
+  return company.offices.length > 0 ? company.offices[0] : null;
+}
+
+export function formatOfficeAddress(office: Office): string {
+  return [
+    office.streetAddress,
+    office.addressLocality,
+    office.addressRegion,
+    office.postalCode,
+    office.addressCountry ?? company.country,
+  ]
+    .filter(isConfigured)
+    .join(", ");
+}
+
+const socialLabels: Record<keyof SocialLinks, string> = {
+  linkedin: "LinkedIn",
+  instagram: "Instagram",
+  facebook: "Facebook",
+  x: "X",
+  youtube: "YouTube",
+};
+
+export function getSocialLinks(): { key: keyof SocialLinks; label: string; url: string }[] {
+  return (Object.entries(company.socialLinks) as [keyof SocialLinks, string][])
+    .filter(([, url]) => isConfigured(url))
+    .map(([key, url]) => ({ key, label: socialLabels[key], url }));
+}
 
 export const navLinks = [
   { label: "SERVICES", href: "/services/" },

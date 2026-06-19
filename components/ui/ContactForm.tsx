@@ -60,19 +60,19 @@ export default function ContactForm({ compact = false, source = "Website inquiry
         <div className="grid gap-4 md:grid-cols-2">
           <label className="flex flex-col gap-2">
             <span className={labelClass}>FULL NAME</span>
-            <input className={inputClass} name="name" placeholder="Your name" />
+            <input className={inputClass} name="name" placeholder="Your name" autoComplete="name" />
             {errors.name && <span className="font-ibm-mono text-[10px] tracking-[1px] text-[#FF6B35]">{errors.name}</span>}
           </label>
           <label className="flex flex-col gap-2">
             <span className={labelClass}>EMAIL</span>
-            <input className={inputClass} name="email" placeholder="you@example.com" />
+            <input className={inputClass} name="email" placeholder="you@example.com" autoComplete="email" type="email" />
             {errors.email && <span className="font-ibm-mono text-[10px] tracking-[1px] text-[#FF6B35]">{errors.email}</span>}
           </label>
         </div>
         <div className="grid gap-4 md:grid-cols-2">
           <label className="flex flex-col gap-2">
             <span className={labelClass}>PHONE</span>
-            <input className={inputClass} name="phone" placeholder="Optional" />
+            <input className={inputClass} name="phone" placeholder="Optional" autoComplete="tel" type="tel" />
           </label>
           <label className="flex flex-col gap-2">
             <span className={labelClass}>SERVICE</span>

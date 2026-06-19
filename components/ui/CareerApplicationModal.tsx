@@ -1,7 +1,6 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { company } from "@/data/company";
 import type { Job } from "@/data/careers";
 import ThankYouModal from "./ThankYouModal";
 
@@ -31,7 +30,7 @@ export default function CareerApplicationModal({ job, onClose }: CareerApplicati
   const [successOpen, setSuccessOpen] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!job) return;
 
@@ -66,21 +65,12 @@ export default function CareerApplicationModal({ job, onClose }: CareerApplicati
     if (Object.keys(nextErrors).length > 0) return;
 
     setLoading(true);
-    try {
-      await new Promise((resolve) => window.setTimeout(resolve, 1000));
-      await fetch(`${company.url}/api/career-application`, {
-        method: "POST",
-        body: formData,
-        mode: "no-cors",
-      });
-    } catch {
-      // The request is intentionally fake for the static website build.
-    } finally {
+    window.setTimeout(() => {
       setLoading(false);
       form.reset();
       onClose();
       setSuccessOpen(true);
-    }
+    }, 1000);
   };
 
   const inputClass =

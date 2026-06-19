@@ -5,13 +5,18 @@ import ContentSection from "@/components/sections/ContentSection";
 import CTASection from "@/components/sections/CTASection";
 import BlogGrid from "@/components/sections/BlogGrid";
 import MotionCard from "@/components/motion/MotionCard";
+import JsonLd from "@/components/seo/JsonLd";
 import { company } from "@/data/company";
 import { blogPosts } from "@/data/blog";
+import { breadcrumbSchema, itemListSchema, webPageSchema } from "@/lib/schema";
+import { createPageMetadata, pageUrl } from "@/lib/seo";
 
-export const metadata: Metadata = {
+const description = `Articles from ${company.brandName} on custom software, web development, mobile apps, APIs, databases, delivery process, and maintenance for Indian businesses.`;
+
+export const metadata: Metadata = createPageMetadata({
   title: `Software Development Blog | ${company.brandName}`,
-  description:
-    `Articles from ${company.brandName} on custom software, web development, mobile apps, APIs, databases, delivery process, and maintenance for Indian businesses.`,
+  description,
+  path: "/blog/",
   keywords: [
     "software development blog India",
     "IT articles",
@@ -22,18 +27,33 @@ export const metadata: Metadata = {
     title: `Blog | ${company.brandName}`,
     description:
       "Practical software development insights for Indian businesses—planning, delivery, integrations, and support.",
-    url: `${company.url}/blog/`,
-    siteName: company.brandName,
-    type: "website",
-    locale: "en_IN",
   },
-};
+});
 
 const categories = Array.from(new Set(blogPosts.map((post) => post.category)));
 
 export default function BlogPage() {
   return (
     <SiteShell>
+      <JsonLd
+        data={[
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Blog", path: "/blog/" },
+          ]),
+          itemListSchema(
+            blogPosts.map((post) => ({
+              name: post.title,
+              url: pageUrl(`/blog/${post.slug}/`),
+            })),
+          ),
+          webPageSchema({
+            title: `Software Development Blog | ${company.brandName}`,
+            description,
+            path: "/blog/",
+          }),
+        ]}
+      />
       <PageHero
         label="[BLOG] // SOFTWARE INSIGHTS"
         title={"PRACTICAL NOTES\nON BUILDING SOFTWARE."}
