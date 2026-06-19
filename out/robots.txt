@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://cyberspaceweb.com
+Sitemap: https://cyberspaceweb.com/sitemap.xml
