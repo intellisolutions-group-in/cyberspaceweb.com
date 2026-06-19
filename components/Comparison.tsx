@@ -85,7 +85,7 @@ export default function Comparison() {
             <span className="font-grotesk text-[9px] font-bold tracking-[1px] text-[#555555]">TMP</span>
           </div>
           <div className="px-2 py-3">
-            <span className="font-grotesk text-[9px] font-bold tracking-[1px] text-[#555555]">FREE</span>
+            <span className="font-grotesk text-[9px] font-bold tracking-[1px] text-[#555555]">FRCL</span>
           </div>
         </div>
         {rows.map((row, index) => (

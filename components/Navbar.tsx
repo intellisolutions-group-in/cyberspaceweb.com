@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import BrandLogo from "@/components/ui/BrandLogo";
 import { company, navLinks } from "@/data/company";
 
 export default function Navbar() {
@@ -34,14 +35,13 @@ export default function Navbar() {
     >
       <div className="mx-auto flex h-[60px] max-w-[1400px] items-center justify-between px-6 md:px-[48px]">
         <Link href="/" className="group flex shrink-0 items-center gap-[10px]">
-          {/* Logo placeholder: replace this square with /images/logo.svg when a logo is available. */}
-          <span className="h-[10px] w-[10px] bg-[#FFD600] transition-transform group-hover:scale-110" />
+          <BrandLogo size="sm" />
           <span className="font-grotesk text-[13px] font-bold tracking-[2px] text-[#F5F5F0]">
             {company.brandName}
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-[28px] lg:flex">
+        <nav className="hidden items-center gap-[28px] lg:flex" aria-label="Main navigation">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -103,7 +103,7 @@ export default function Navbar() {
           borderBottom: menuOpen ? "1px solid #1E1E1E" : "none",
         }}
       >
-        <nav className="flex flex-col gap-0 px-6 py-5">
+        <nav className="flex flex-col gap-0 px-6 py-5" aria-label="Mobile navigation">
           {navLinks.map((link) => (
             <Link
               key={link.href}

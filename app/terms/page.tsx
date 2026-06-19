@@ -3,22 +3,23 @@ import SiteShell from "@/components/sections/SiteShell";
 import PageHero from "@/components/sections/PageHero";
 import ContentSection from "@/components/sections/ContentSection";
 import MotionCard from "@/components/motion/MotionCard";
+import JsonLd from "@/components/seo/JsonLd";
 import { company } from "@/data/company";
+import { breadcrumbSchema, webPageSchema } from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+const description = `Terms of Service for ${company.domain} covering website usage, service inquiries, content, and general limitations.`;
+
+export const metadata: Metadata = createPageMetadata({
   title: `Terms of Service | ${company.brandName}`,
-  description:
-    `Terms of Service for ${company.domain} covering website usage, service inquiries, content, and general limitations.`,
+  description,
+  path: "/terms/",
   keywords: ["terms of service", company.brandName, "software company terms"],
   openGraph: {
     title: `Terms of Service | ${company.brandName}`,
     description: `General website terms for ${company.domain} visitors and inquiry submissions.`,
-    url: `${company.url}/terms/`,
-    siteName: company.brandName,
-    type: "website",
-    locale: "en_IN",
   },
-};
+});
 
 const sections = [
   {
@@ -31,7 +32,7 @@ const sections = [
   },
   {
     title: "No Unsupported Claims",
-    text: "The website does not display certifications, awards, partnerships, real client names, or client logos unless they are provided and approved. Generic portfolio examples are illustrative project patterns.",
+    text: "The website does not display real client names or client logos unless they are provided and approved. Generic portfolio examples are illustrative project patterns.",
   },
   {
     title: "Inquiries and Applications",
@@ -50,6 +51,19 @@ const sections = [
 export default function TermsPage() {
   return (
     <SiteShell>
+      <JsonLd
+        data={[
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Terms of Service", path: "/terms/" },
+          ]),
+          webPageSchema({
+            title: `Terms of Service | ${company.brandName}`,
+            description,
+            path: "/terms/",
+          }),
+        ]}
+      />
       <PageHero
         label="[LEGAL] // TERMS"
         title={"TERMS\nOF SERVICE."}

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="cyberspaceweb software development company">
+  <rect width="1200" height="630" fill="#0A0A0A"/>
+  <rect x="80" y="80" width="1040" height="470" fill="none" stroke="#2D2D2D" stroke-width="2"/>
+  <rect x="80" y="80" width="8" height="470" fill="#FFD600"/>
+  <text x="120" y="250" fill="#FFD600" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" letter-spacing="6">CYBERSPACEWEB</text>
+  <text x="120" y="330" fill="#F5F5F0" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="700">IT &amp; Software Development</text>
+  <text x="120" y="390" fill="#888888" font-family="Arial, Helvetica, sans-serif" font-size="28">Websites, Apps, APIs, Databases, Cloud</text>
+  <text x="120" y="470" fill="#555555" font-family="Arial, Helvetica, sans-serif" font-size="22">India-focused delivery since 2004</text>
+</svg>

@@ -23,13 +23,15 @@ export default function Hero() {
       <div className="h-8 md:h-[32px]" />
 
       {/* Headline */}
-      <h1 className="font-grotesk text-[clamp(32px,10vw,96px)] font-bold text-[#F5F5F0] tracking-[-1px] leading-none text-center w-full max-w-[1100px]">
-        <GlitchText text={company.brandName.toUpperCase()} speed={45} delay={100} />
-        <br />
-        <GlitchText text="SOFTWARE FOR" speed={45} delay={400} />
-      </h1>
-      <h1 className="font-grotesk text-[clamp(32px,10vw,96px)] font-bold text-[#FFD600] tracking-[-1px] leading-none text-center w-full max-w-[1100px]">
-        <GlitchText text="BUSINESS SYSTEMS." speed={45} delay={700} />
+      <h1 className="font-grotesk text-[clamp(32px,10vw,96px)] font-bold tracking-[-1px] leading-none text-center w-full max-w-[1100px]">
+        <span className="block text-[#F5F5F0]">
+          <GlitchText text={company.brandName.toUpperCase()} speed={45} delay={100} />
+          <br />
+          <GlitchText text="SOFTWARE FOR" speed={45} delay={400} />
+        </span>
+        <span className="mt-2 block text-[#FFD600]">
+          <GlitchText text="BUSINESS SYSTEMS." speed={45} delay={700} />
+        </span>
       </h1>
 
       <div className="h-8 md:h-[32px]" />
@@ -153,6 +155,8 @@ function DesignInterfaceSVG({ mounted }: { mounted: boolean }) {
       <svg
         viewBox="0 0 1100 580"
         xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-label="Illustration of a software project platform with layers, design canvas, and delivery workflow"
         style={{ display: "block", width: "100%", height: "auto" }}
       >
         {/* BG */}

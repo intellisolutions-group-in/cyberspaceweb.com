@@ -3,7 +3,7 @@ import { company } from "@/data/company";
 const stats = [
   { value: company.establishedYear, label: "ESTABLISHED YEAR", border: true },
   { value: "18", label: "SERVICE AREAS", border: true },
-  { value: "44", label: "SITE PAGES", border: true },
+  { value: "39", label: "SITE PAGES", border: true },
   { value: "IN", label: "TARGET COUNTRY", border: false },
 ];
 

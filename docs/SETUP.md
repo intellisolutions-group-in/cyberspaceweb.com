@@ -47,7 +47,7 @@ Use these files:
 - `data/careers.ts`
 - `data/portfolio.ts`
 
-Do not add real client names, client logos, partnerships, awards, or certifications unless they are confirmed.
+Do not add real client names or client logos unless they are confirmed.
 
 ## Update Social Links
 

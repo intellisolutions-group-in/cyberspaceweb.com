@@ -48,11 +48,14 @@ export default function FAQAccordion({ items, grouped = false }: FAQAccordionPro
                   <button
                     type="button"
                     onClick={() => setOpenIndex(isOpen ? -1 : currentIndex)}
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-panel-${currentIndex}`}
+                    id={`faq-trigger-${currentIndex}`}
                     className="flex w-full items-center justify-between gap-5 py-5 text-left transition-colors hover:bg-[#0D0D0D] md:min-h-[72px]"
                   >
-                    <span className="font-grotesk text-[14px] font-bold tracking-[1px] text-[#F5F5F0] md:text-[16px]">
+                    <h3 className="font-grotesk text-[14px] font-bold tracking-[1px] text-[#F5F5F0] md:text-[16px]">
                       {faq.question}
-                    </span>
+                    </h3>
                     <motion.span
                       className="flex h-[32px] w-[32px] shrink-0 items-center justify-center font-ibm-mono text-[15px] font-bold"
                       style={{
@@ -69,6 +72,9 @@ export default function FAQAccordion({ items, grouped = false }: FAQAccordionPro
                   <AnimatePresence initial={false}>
                     {isOpen && (
                       <motion.div
+                        id={`faq-panel-${currentIndex}`}
+                        role="region"
+                        aria-labelledby={`faq-trigger-${currentIndex}`}
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
