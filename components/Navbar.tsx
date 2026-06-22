@@ -4,12 +4,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import BrandLogo from "@/components/ui/BrandLogo";
-import { company, navLinks } from "@/data/company";
+import { company, getLogoPath, navLinks } from "@/data/company";
 
 export default function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const logo = getLogoPath();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -34,11 +35,17 @@ export default function Navbar() {
       }}
     >
       <div className="mx-auto flex h-[60px] max-w-[1400px] items-center justify-between px-6 md:px-[48px]">
-        <Link href="/" className="group flex shrink-0 items-center gap-[10px]">
-          <BrandLogo size="sm" />
-          <span className="font-grotesk text-[13px] font-bold tracking-[2px] text-[#F5F5F0]">
-            {company.brandName}
-          </span>
+        <Link href="/" className="group flex shrink-0 items-center gap-[10px]" aria-label={`${company.brandName} home`}>
+          {logo ? (
+            <BrandLogo variant="full" size="sm" />
+          ) : (
+            <>
+              <BrandLogo size="sm" />
+              <span className="font-grotesk text-[13px] font-bold tracking-[2px] text-[#F5F5F0]">
+                {company.brandName}
+              </span>
+            </>
+          )}
         </Link>
 
         <nav className="hidden items-center gap-[28px] lg:flex" aria-label="Main navigation">
@@ -46,6 +53,7 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
+              aria-current={isActive(link.href) ? "page" : undefined}
               className="relative bg-transparent font-ibm-mono text-[10px] tracking-[1.5px] transition-colors duration-150"
               style={{ color: isActive(link.href) ? "#FFD600" : "#555555" }}
             >
@@ -109,6 +117,7 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
+              aria-current={isActive(link.href) ? "page" : undefined}
               className="flex w-full items-center gap-2 border-b border-[#141414] py-[14px] font-ibm-mono text-[12px] tracking-[2px] transition-colors"
               style={{ color: isActive(link.href) ? "#FFD600" : "#666666" }}
             >

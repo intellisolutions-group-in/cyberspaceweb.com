@@ -17,7 +17,7 @@ export const metadata: Metadata = createPageMetadata({
   title: `Careers at ${company.brandName} | Software Jobs`,
   description,
   path: "/careers/",
-  keywords: ["software careers India remote", "developer jobs", company.brandName],
+  keywords: ["software careers India hybrid", "developer jobs", company.brandName],
   openGraph: {
     title: `Careers at ${company.brandName}`,
     description: "Open roles for software delivery, design, quality, and product analysis.",

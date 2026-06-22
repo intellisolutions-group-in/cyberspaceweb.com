@@ -81,7 +81,7 @@ export const faqs: FAQItem[] = [
     category: "BUSINESS",
     question: "DO YOU WORK WITH CLIENTS ACROSS INDIA?",
     answer:
-      "Yes. The website and engagement model are India-focused. Work can be handled remotely, with structured communication, milestone reviews, and clear documentation.",
+      "Yes. The website and engagement model are India-focused. Work can be handled in a hybrid model, with structured communication, milestone reviews, and clear documentation.",
   },
   {
     category: "BUSINESS",

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, IBM_Plex_Mono } from "next/font/google";
 import JsonLd from "@/components/seo/JsonLd";
 import { globalSchemas } from "@/lib/schema";
@@ -18,6 +18,14 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = rootMetadata;
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0A0A0A" },
+    { media: "(prefers-color-scheme: light)", color: "#FFD600" },
+  ],
+  colorScheme: "dark",
+};
 
 export default function RootLayout({
   children,

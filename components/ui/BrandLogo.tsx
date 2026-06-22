@@ -1,19 +1,46 @@
 import Image from "next/image";
-import { company, getLogoPath } from "@/data/company";
+import {
+  company,
+  getLogoIconPath,
+  getLogoPath,
+  LOGO_ASPECT_RATIO,
+} from "@/data/company";
 
 type BrandLogoProps = {
+  variant?: "full" | "icon";
   size?: "sm" | "md";
   className?: string;
 };
 
-export default function BrandLogo({ size = "sm", className = "" }: BrandLogoProps) {
+export default function BrandLogo({
+  variant = "icon",
+  size = "sm",
+  className = "",
+}: BrandLogoProps) {
   const logo = getLogoPath();
 
-  if (logo) {
-    const dimensions = size === "sm" ? 28 : 32;
+  if (variant === "full" && logo) {
+    const height = size === "sm" ? 28 : 36;
+    const width = Math.round(height * LOGO_ASPECT_RATIO);
+
     return (
       <Image
         src={logo}
+        alt={`${company.brandName} logo`}
+        width={width}
+        height={height}
+        className={`shrink-0 object-contain object-left ${className}`}
+        priority={size === "sm"}
+      />
+    );
+  }
+
+  if (logo) {
+    const dimensions = size === "sm" ? 28 : 32;
+
+    return (
+      <Image
+        src={getLogoIconPath()}
         alt={`${company.brandName} logo`}
         width={dimensions}
         height={dimensions}

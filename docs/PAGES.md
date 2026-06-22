@@ -1,6 +1,6 @@
 # Generated Pages
 
-The website includes 31 public pages.
+The website includes 39 public pages.
 
 ## Core Pages
 
@@ -10,7 +10,7 @@ The website includes 31 public pages.
 | `/about/` | About Us | Company overview, domain registration date, established year, mission, vision, values, India-focused presence, process. |
 | `/services/` | Services Overview | Service categories, all 18 service cards, and CTA. |
 | `/contact/` | Contact Us | Inquiry form, primary email, business hours, and location context. |
-| `/careers/` | Careers | 6 job openings, location `Vadodara / Remote`, requirements, and application modal. |
+| `/careers/` | Careers | 6 job openings, location `Hybrid`, requirements, and application modal. |
 | `/privacy/` | Privacy Policy | Form data, inquiry, career application, security, and contact policy. |
 | `/terms/` | Terms of Service | Website usage, service inquiry, intellectual property, and general terms. |
 
@@ -21,7 +21,7 @@ The website includes 31 public pages.
 | `/why-choose-us/` | Why Choose Us | Reasons to choose cyberspaceweb.com, fit criteria, and CTA. |
 | `/our-process/` | Development Process | Six-stage development process and operating principles. |
 | `/portfolio/` | Portfolio / Case Studies | 8 generic project examples with challenge, solution, stack, and outcome. |
-| `/faq/` | FAQ | 16 categorised questions with accordion UI. |
+| `/faq/` | FAQ | 17 categorised questions with accordion UI. |
 | `/testimonials/` | Testimonials | 9 testimonials using human names and designations only. |
 
 ## Service Detail Pages

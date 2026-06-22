@@ -4,6 +4,7 @@ import {
   company,
   footerColumns,
   formatOfficeAddress,
+  getLogoPath,
   getPhone,
   getPrimaryOffice,
   getSocialLinks,
@@ -13,16 +14,23 @@ export default function Footer() {
   const phone = getPhone();
   const office = getPrimaryOffice();
   const socialLinks = getSocialLinks();
+  const logo = getLogoPath();
 
   return (
     <footer className="flex w-full flex-col bg-[#050505]">
       <div className="flex flex-col gap-12 px-6 py-12 md:flex-row md:gap-[80px] md:px-[120px] md:py-[64px]">
         <div className="flex flex-col gap-6 md:w-[320px] md:shrink-0">
           <div className="flex items-center gap-[12px]">
-            <BrandLogo size="md" />
-            <span className="font-grotesk text-[16px] font-bold tracking-[2px] text-[#FFD600]">
-              {company.brandName}
-            </span>
+            {logo ? (
+              <BrandLogo variant="full" size="md" />
+            ) : (
+              <>
+                <BrandLogo size="md" />
+                <span className="font-grotesk text-[16px] font-bold tracking-[2px] text-[#FFD600]">
+                  {company.brandName}
+                </span>
+              </>
+            )}
           </div>
           <p className="max-w-[300px] font-ibm-mono text-[11px] leading-[1.7] tracking-[1px] text-[#888888]">
             INDIA-FOCUSED IT AND SOFTWARE DEVELOPMENT FOR WEBSITES, APPS, API INTEGRATIONS, DATABASES, AND CUSTOM BUSINESS SYSTEMS.

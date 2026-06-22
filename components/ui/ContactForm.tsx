@@ -53,6 +53,7 @@ export default function ContactForm({ compact = false, source = "Website inquiry
     <>
       <form
         onSubmit={handleSubmit}
+        aria-label="Contact inquiry form"
         className={`flex w-full flex-col gap-4 border border-[#2D2D2D] bg-[#101010] ${compact ? "p-6" : "p-6 md:p-8"}`}
         noValidate
       >

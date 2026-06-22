@@ -27,6 +27,16 @@ export function getOgImage() {
 
 export const ogImage = getOgImage();
 
+export const siteIcons: Metadata["icons"] = {
+  icon: [
+    { url: "/favicon.ico", sizes: "any" },
+    { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+  ],
+  shortcut: "/favicon.ico",
+  apple: [{ url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" }],
+};
+
 export function pageUrl(path = "/"): string {
   if (!path || path === "/") return `${company.url}/`;
   const normalized = path.startsWith("/") ? path : `/${path}`;
@@ -43,6 +53,8 @@ export type PageMetadataInput = {
   twitter?: Partial<NonNullable<Metadata["twitter"]>>;
   type?: "website" | "article";
   publishedTime?: string;
+  modifiedTime?: string;
+  authors?: Metadata["authors"];
 };
 
 export function createPageMetadata({
@@ -55,15 +67,25 @@ export function createPageMetadata({
   twitter,
   type = "website",
   publishedTime,
+  modifiedTime,
+  authors,
 }: PageMetadataInput): Metadata {
   const url = pageUrl(path);
   const ogTitle = openGraph?.title ?? title;
   const ogDescription = openGraph?.description ?? description;
+  const articleTimes =
+    type === "article"
+      ? {
+          ...(publishedTime ? { publishedTime } : {}),
+          ...(modifiedTime ? { modifiedTime } : {}),
+        }
+      : {};
 
   return {
     title,
     description,
     keywords: keywords ?? [...defaultKeywords],
+    ...(authors ? { authors } : type === "article" ? { authors: [{ name: company.brandName, url: company.url }] } : {}),
     alternates: {
       canonical: url,
     },
@@ -87,7 +109,7 @@ export function createPageMetadata({
       type,
       locale: "en_IN",
       images: [getOgImage()],
-      ...(publishedTime ? { publishedTime } : {}),
+      ...articleTimes,
       ...openGraph,
     },
     twitter: {
@@ -102,6 +124,7 @@ export function createPageMetadata({
 
 export const rootMetadata: Metadata = {
   metadataBase: new URL(company.url),
+  applicationName: company.brandName,
   title: {
     default: `${company.brandName} | IT and Software Development Company in India`,
     template: "%s",
@@ -113,11 +136,14 @@ export const rootMetadata: Metadata = {
   creator: company.brandName,
   publisher: company.brandName,
   category: "technology",
+  referrer: "origin-when-cross-origin",
+  manifest: "/manifest.webmanifest",
   formatDetection: {
     email: true,
     address: !!getPrimaryOffice(),
     telephone: !!getPhone(),
   },
+  icons: siteIcons,
   openGraph: {
     title: `${company.brandName} | IT and Software Development Company in India`,
     description:

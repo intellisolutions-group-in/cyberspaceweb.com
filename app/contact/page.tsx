@@ -11,7 +11,7 @@ import {
   getPhone,
   getPrimaryOffice,
 } from "@/data/company";
-import { breadcrumbSchema, contactPageSchema } from "@/lib/schema";
+import { breadcrumbSchema, contactPageSchema, webPageSchema } from "@/lib/schema";
 import { createPageMetadata } from "@/lib/seo";
 
 const description = `Contact ${company.brandName} for website development, custom software, mobile app development, APIs, databases, and IT consulting inquiries in India.`;
@@ -46,6 +46,11 @@ export default function ContactPage() {
             { name: "Contact", path: "/contact/" },
           ]),
           contactPageSchema(),
+          webPageSchema({
+            title: `Contact ${company.brandName}`,
+            description,
+            path: "/contact/",
+          }),
         ]}
       />
       <PageHero
@@ -84,7 +89,7 @@ export default function ContactPage() {
               <MotionCard index={phone ? 2 : 1} className="border border-[#2D2D2D] bg-[#101010] p-7 transition-colors hover:border-[#FFD600] md:p-8">
                 <span className="font-ibm-mono text-[10px] font-bold tracking-[2px] text-[#FFD600]">COUNTRY FOCUS</span>
                 <p className="mt-4 font-ibm-mono text-[12px] leading-[1.7] tracking-[1px] text-[#777777]">
-                  Software development inquiries for businesses in {company.country}, with remote-ready communication and delivery.
+                  Software development inquiries for businesses in {company.country}, with hybrid communication and delivery.
                 </p>
               </MotionCard>
             )}

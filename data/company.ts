@@ -26,10 +26,11 @@ export const company = {
   email: "info@cyberspaceweb.com",
   businessHours: "Monday to Saturday, 10:00 AM to 7:00 PM IST",
   defaultLocation: "India",
-  careerLocation: "Remote",
+  careerLocation: "Hybrid",
 
   // ── Fill in when ready. Leave empty to stay hidden from UI and structured data. ──
-  logo: "",
+  logo: "/logo.png",
+  logoIcon: "/favicon-32x32.png",
   phone: "",
   ogImage: "",
   offices: [] as Office[],
@@ -46,9 +47,25 @@ export function isConfigured(value: string | undefined | null): value is string 
   return typeof value === "string" && value.trim().length > 0;
 }
 
+/** Full years since domain registration date (conservative, anniversary-aware). */
+export function getYearsSinceEstablishment(asOf = new Date()): number {
+  const registered = new Date(`${company.domainRegisteredDate}T00:00:00`);
+  let years = asOf.getFullYear() - registered.getFullYear();
+  const ordinal = (date: Date) => date.getMonth() * 100 + date.getDate();
+  if (ordinal(asOf) < ordinal(registered)) years -= 1;
+  return years;
+}
+
 export function getLogoPath(): string | null {
   return isConfigured(company.logo) ? company.logo : null;
 }
+
+export function getLogoIconPath(): string {
+  return isConfigured(company.logoIcon) ? company.logoIcon : "/favicon-32x32.png";
+}
+
+/** Full logo aspect ratio (width / height) — matches public/logo.png */
+export const LOGO_ASPECT_RATIO = 3934 / 667;
 
 export function getPhone(): string | null {
   return isConfigured(company.phone) ? company.phone : null;
@@ -56,8 +73,7 @@ export function getPhone(): string | null {
 
 export function getOgImagePath(): string {
   if (isConfigured(company.ogImage)) return company.ogImage;
-  if (isConfigured(company.logo)) return company.logo;
-  return "/og-default.svg";
+  return "/og-default.png";
 }
 
 export function getPrimaryOffice(): Office | null {

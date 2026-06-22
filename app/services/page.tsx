@@ -54,7 +54,7 @@ export default function ServicesPage() {
         label="[SERVICES] // IT AND SOFTWARE DEVELOPMENT"
         title={"SOFTWARE SERVICES\nFOR PRACTICAL GROWTH."}
         description={`From websites and mobile apps to enterprise systems, APIs, databases, and software modernisation, ${company.brandName} helps Indian businesses plan and build dependable digital systems.`}
-        meta={["18 SERVICE AREAS", "INDIA-FOCUSED", "STATIC-READY WEB"]}
+        meta={[`${services.length} SERVICE AREAS`, "INDIA-FOCUSED", "STATIC-READY WEB"]}
       />
       <ContentSection
         label="[01] // SERVICE CATEGORIES"
