@@ -14,7 +14,7 @@ import {
   getBlogPost,
   getRelatedPosts,
 } from "@/data/blog";
-import { articleSchema, breadcrumbSchema } from "@/lib/schema";
+import { articleSchema, breadcrumbSchema, webPageSchema } from "@/lib/schema";
 import { createPageMetadata } from "@/lib/seo";
 
 export const dynamicParams = false;
@@ -71,8 +71,14 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             excerpt: post.excerpt,
             slug: post.slug,
             publishedDate: post.publishedDate,
+            readMinutes: post.readMinutes,
             tags: post.tags,
             category: post.category,
+          }),
+          webPageSchema({
+            title: `${post.title} | ${company.brandName} Blog`,
+            description: post.excerpt,
+            path: `/blog/${post.slug}/`,
           }),
         ]}
       />
@@ -89,6 +95,13 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
       <ContentSection label="[01] // ARTICLE" title="OVERVIEW.">
         <article className="flex max-w-[920px] flex-col gap-8 border border-[#2D2D2D] bg-[#101010] p-7 md:p-10">
+          <div className="flex flex-wrap items-center gap-3 font-ibm-mono text-[11px] tracking-[2px] text-[#666666]">
+            <time dateTime={post.publishedDate}>{formatBlogDate(post.publishedDate)}</time>
+            <span aria-hidden="true">//</span>
+            <span>{post.readMinutes} min read</span>
+            <span aria-hidden="true">//</span>
+            <span>{post.category}</span>
+          </div>
           <p className="font-ibm-mono text-[14px] leading-[1.9] tracking-[1px] text-[#CCCCCC] md:text-[15px]">
             {post.intro}
           </p>

@@ -10,7 +10,7 @@ import MotionCard from "@/components/motion/MotionCard";
 import JsonLd from "@/components/seo/JsonLd";
 import { company } from "@/data/company";
 import { getRelatedServices, getService, services } from "@/data/services";
-import { breadcrumbSchema, serviceSchema } from "@/lib/schema";
+import { breadcrumbSchema, serviceSchema, webPageSchema } from "@/lib/schema";
 import { createPageMetadata } from "@/lib/seo";
 
 export const dynamicParams = false;
@@ -55,6 +55,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
   if (!service) notFound();
 
   const related = getRelatedServices(service.related);
+  const pageDescription = `${service.summary} Work with ${company.brandName} for ${service.title.toLowerCase()} planned around business goals, maintainability, and reliable delivery.`;
 
   return (
     <SiteShell>
@@ -69,6 +70,11 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             title: service.title,
             summary: service.summary,
             slug: service.slug,
+          }),
+          webPageSchema({
+            title: `${service.title} in India | ${company.brandName}`,
+            description: pageDescription,
+            path: `/services/${service.slug}/`,
           }),
         ]}
       />

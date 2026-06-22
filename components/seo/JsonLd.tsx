@@ -2,6 +2,10 @@ type JsonLdProps = {
   data: Record<string, unknown> | Record<string, unknown>[];
 };
 
+function safeJsonLd(data: Record<string, unknown>): string {
+  return JSON.stringify(data).replace(/</g, "\\u003c");
+}
+
 export default function JsonLd({ data }: JsonLdProps) {
   const payload = Array.isArray(data) ? data : [data];
 
@@ -11,7 +15,7 @@ export default function JsonLd({ data }: JsonLdProps) {
         <script
           key={`jsonld-${index}`}
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }}
+          dangerouslySetInnerHTML={{ __html: safeJsonLd(item) }}
         />
       ))}
     </>

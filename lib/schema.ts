@@ -1,6 +1,9 @@
 import { company, getLogoPath, getPhone, getPrimaryOffice, getSocialLinks, isConfigured } from "@/data/company";
 import { absoluteAssetUrl, pageUrl } from "@/lib/seo";
 
+const organizationId = `${company.url}/#organization`;
+const websiteId = `${company.url}/#website`;
+
 function organizationExtras() {
   const logo = getLogoPath();
   const phone = getPhone();
@@ -29,6 +32,7 @@ export function organizationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": organizationId,
     name: company.brandName,
     url: company.url,
     email: company.email,
@@ -38,6 +42,18 @@ export function organizationSchema() {
       name: company.country,
     },
     industry: company.industry,
+    knowsAbout: [
+      "Web Development",
+      "Mobile App Development",
+      "Custom Software Development",
+      "API Development",
+      "Database Development",
+      "Cloud Applications",
+      "Software Testing",
+      "UI/UX Design",
+      "Software Modernization",
+      "IT Consulting",
+    ],
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
@@ -95,22 +111,24 @@ export function websiteSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": websiteId,
     name: company.brandName,
     url: company.url,
     inLanguage: "en-IN",
     publisher: {
-      "@type": "Organization",
-      name: company.brandName,
-      url: company.url,
-      ...(logo
-        ? {
-            logo: {
-              "@type": "ImageObject",
-              url: absoluteAssetUrl(logo),
-            },
-          }
-        : {}),
+      "@id": organizationId,
     },
+    copyrightHolder: {
+      "@id": organizationId,
+    },
+    ...(logo
+      ? {
+          image: {
+            "@type": "ImageObject",
+            url: absoluteAssetUrl(logo),
+          },
+        }
+      : {}),
   };
 }
 
@@ -153,6 +171,7 @@ function providerOrganization() {
 
   return {
     "@type": "Organization",
+    "@id": organizationId,
     name: company.brandName,
     url: company.url,
     email: company.email,
@@ -193,17 +212,21 @@ export function articleSchema(input: {
   excerpt: string;
   slug: string;
   publishedDate: string;
+  readMinutes: number;
   tags: string[];
   category: string;
 }) {
   const logo = getLogoPath();
+  const url = pageUrl(`/blog/${input.slug}/`);
 
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
+    "@id": `${url}#article`,
     headline: input.title,
     description: input.excerpt,
     datePublished: input.publishedDate,
+    dateModified: input.publishedDate,
     author: providerOrganization(),
     publisher: {
       ...providerOrganization(),
@@ -216,10 +239,19 @@ export function articleSchema(input: {
           }
         : {}),
     },
-    mainEntityOfPage: pageUrl(`/blog/${input.slug}/`),
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url,
+    },
+    url,
+    image: absoluteAssetUrl(getLogoPath() ?? "/og-default.png"),
     keywords: input.tags.join(", "),
     articleSection: input.category,
     inLanguage: "en-IN",
+    timeRequired: `PT${input.readMinutes}M`,
+    isPartOf: {
+      "@id": websiteId,
+    },
   };
 }
 
@@ -269,10 +301,12 @@ export function contactPageSchema() {
 export function jobPostingSchema(job: import("@/data/careers").Job) {
   const phone = getPhone();
   const office = getPrimaryOffice();
+  const url = pageUrl("/careers/");
 
   return {
     "@context": "https://schema.org",
     "@type": "JobPosting",
+    "@id": `${url}#${job.slug}`,
     title: job.title,
     description: `${job.summary} Requirements: ${job.requirements.join(" ")}`,
     identifier: {
@@ -281,6 +315,7 @@ export function jobPostingSchema(job: import("@/data/careers").Job) {
       value: job.slug,
     },
     datePosted: "2026-06-01",
+    validThrough: "2026-12-31",
     employmentType: "FULL_TIME",
     hiringOrganization: {
       ...providerOrganization(),
@@ -304,31 +339,35 @@ export function jobPostingSchema(job: import("@/data/careers").Job) {
             "@type": "PostalAddress",
             addressCountry: "IN",
             addressRegion: company.defaultLocation,
+            addressLocality: company.careerLocation,
           },
         },
     applicantLocationRequirements: {
       "@type": "Country",
       name: company.country,
     },
-    jobLocationType: "TELECOMMUTE",
-    url: pageUrl("/careers/"),
+    directApply: true,
+    url,
     ...(phone ? { contactPoint: { "@type": "ContactPoint", telephone: phone, email: company.email } } : {}),
   };
 }
 
 export function webPageSchema(input: { title: string; description: string; path: string }) {
+  const url = pageUrl(input.path);
+
   return {
     "@context": "https://schema.org",
     "@type": "WebPage",
+    "@id": url,
     name: input.title,
     description: input.description,
-    url: pageUrl(input.path),
+    url,
     inLanguage: "en-IN",
     isPartOf: {
-      "@type": "WebSite",
-      name: company.brandName,
-      url: company.url,
+      "@id": websiteId,
     },
-    publisher: providerOrganization(),
+    publisher: {
+      "@id": organizationId,
+    },
   };
 }

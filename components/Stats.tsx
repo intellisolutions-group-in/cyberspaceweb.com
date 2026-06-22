@@ -1,9 +1,10 @@
-import { company } from "@/data/company";
+import { getYearsSinceEstablishment } from "@/data/company";
+import { getServiceAreaCount, getSitePageCount } from "@/lib/siteMetrics";
 
 const stats = [
-  { value: company.establishedYear, label: "ESTABLISHED YEAR", border: true },
-  { value: "18", label: "SERVICE AREAS", border: true },
-  { value: "39", label: "SITE PAGES", border: true },
+  { value: String(getYearsSinceEstablishment()), label: "YEARS SINCE 2004", border: true },
+  { value: String(getServiceAreaCount()), label: "SERVICE AREAS", border: true },
+  { value: String(getSitePageCount()), label: "SITE PAGES", border: true },
   { value: "IN", label: "TARGET COUNTRY", border: false },
 ];
 

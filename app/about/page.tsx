@@ -69,7 +69,7 @@ export default function AboutPage() {
             {[
               ["MISSION", "Build practical software systems that improve business clarity, speed, and customer experience."],
               ["VISION", "Become a trusted India-focused technology partner for maintainable digital products and business applications."],
-              ["PRESENCE", "Remote-ready delivery for Indian businesses, with office address details reserved for future update."],
+              ["PRESENCE", "Hybrid delivery for Indian businesses, with office address details reserved for future update."],
             ].map(([label, text], index) => (
               <MotionCard key={label} index={index + 1} className="border border-[#2D2D2D] bg-[#0F0F0F] p-7 transition-colors hover:border-[#FFD600]">
                 <span className="font-ibm-mono text-[10px] font-bold tracking-[2px] text-[#FFD600]">{label}</span>

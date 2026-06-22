@@ -7,8 +7,8 @@ import MotionCard from "@/components/motion/MotionCard";
 import JsonLd from "@/components/seo/JsonLd";
 import { company } from "@/data/company";
 import { portfolioItems } from "@/data/portfolio";
-import { breadcrumbSchema, webPageSchema } from "@/lib/schema";
-import { createPageMetadata } from "@/lib/seo";
+import { breadcrumbSchema, itemListSchema, webPageSchema } from "@/lib/schema";
+import { createPageMetadata, pageUrl } from "@/lib/seo";
 
 const description = `View generic software project examples from ${company.brandName}, including web applications, mobile tools, modernisation, e-commerce, PWAs, reporting, and APIs.`;
 
@@ -32,6 +32,12 @@ export default function PortfolioPage() {
             { name: "Home", path: "/" },
             { name: "Portfolio", path: "/portfolio/" },
           ]),
+          itemListSchema(
+            portfolioItems.map((item) => ({
+              name: item.title,
+              url: pageUrl("/portfolio/"),
+            })),
+          ),
           webPageSchema({
             title: `Portfolio | ${company.brandName}`,
             description,

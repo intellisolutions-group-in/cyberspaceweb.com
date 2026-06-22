@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import SkipToContent from "@/components/seo/SkipToContent";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import PixelDivider from "@/components/PixelDivider";
@@ -32,7 +33,10 @@ const homeDescription =
 
 export default function Home() {
   return (
-    <main className="flex flex-col w-full bg-[#0A0A0A] pt-[60px]">
+    <>
+      <SkipToContent />
+      <Navbar />
+      <main id="main-content" className="flex flex-col w-full bg-[#0A0A0A] pt-[60px]">
       <JsonLd
         data={webPageSchema({
           title: `${company.brandName} | IT and Software Development Company in India`,
@@ -40,7 +44,6 @@ export default function Home() {
           path: "/",
         })}
       />
-      <Navbar />
       <Hero />
       <PixelDivider />
       <Logos />
@@ -62,6 +65,7 @@ export default function Home() {
         <ContactForm compact source="Home quick inquiry" />
       </ContentSection>
       <Footer />
-    </main>
+      </main>
+    </>
   );
 }
