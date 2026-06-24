@@ -20,7 +20,7 @@ export default function FAQ() {
       <FAQAccordion items={faqs.slice(0, 5)} />
 
       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-[16px] pt-10 md:pt-[48px]">
-        <span className="font-ibm-mono text-[13px] text-[#555555] tracking-[1px]">
+        <span className="font-ibm-mono text-[13px] text-[#888888] tracking-[1px]">
           NEED MORE DETAIL?
         </span>
         <Link href="/faq/" className="font-ibm-mono text-[13px] font-bold text-[#FFD600] tracking-[1px] hover:underline">

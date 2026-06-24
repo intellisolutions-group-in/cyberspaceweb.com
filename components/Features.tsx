@@ -25,7 +25,7 @@ function FeatureCard({
   return (
     <MotionCard
       index={index}
-      className={`flex w-full flex-col gap-5 border p-8 md:h-[320px] md:flex-1 md:p-[32px] ${borderColor === "#FFD600" ? "border-[#FFD600]" : borderColor === "#FF6B35" ? "border-[#FF6B35]" : "border-[#555555]"}`}
+      className={`flex w-full flex-col gap-5 border p-8 md:h-[320px] md:flex-1 md:p-[32px] ${borderColor === "#FFD600" ? "border-[#FFD600]" : borderColor === "#FF6B35" ? "border-[#FF6B35]" : "border-[#888888]"}`}
       style={{ backgroundColor: bgColor }}
     >
       <div className="h-[40px] w-[40px] shrink-0" style={{ backgroundColor: iconColor }} />
@@ -86,7 +86,7 @@ export default function Features() {
           description="LEGACY IMPROVEMENTS, API INTEGRATIONS, TESTING, CLOUD READINESS, AND MAINTENANCE."
           tag="SUPPORT"
           tagColor="#888888"
-          borderColor="#555555"
+          borderColor="#888888"
         />
       </div>
     </section>

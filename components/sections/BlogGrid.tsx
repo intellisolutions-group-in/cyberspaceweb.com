@@ -23,7 +23,7 @@ export default function BlogGrid({ posts, compact = false }: BlogGridProps) {
               <span className="font-ibm-mono text-[10px] font-bold tracking-[2px] text-[#FFD600]">
                 {post.category.toUpperCase()}
               </span>
-              <span className="font-ibm-mono text-[10px] tracking-[2px] text-[#555555]">
+              <span className="font-ibm-mono text-[10px] tracking-[2px] text-[#888888]">
                 {formatBlogDate(post.publishedDate).toUpperCase()}
               </span>
             </div>
@@ -35,7 +35,7 @@ export default function BlogGrid({ posts, compact = false }: BlogGridProps) {
             </p>
           </div>
           <div className="mt-8 flex items-center justify-between gap-4">
-            <span className="font-ibm-mono text-[10px] tracking-[2px] text-[#555555]">
+            <span className="font-ibm-mono text-[10px] tracking-[2px] text-[#888888]">
               {post.readMinutes} MIN READ
             </span>
             <span className="font-ibm-mono text-[11px] font-bold tracking-[2px] text-[#FFD600] group-hover:text-[#F5F5F0]">

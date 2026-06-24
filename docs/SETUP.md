@@ -12,7 +12,7 @@ Current values:
 - Brand name: `cyberspaceweb`
 - Target country: India
 - Industry: IT / Software Development
-- Domain registered date: `2004-04-26`
+- Company registered date: `2004-04-26`
 - Established year: `2004`
 - Email: `info@cyberspaceweb.com`
 

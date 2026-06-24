@@ -33,7 +33,7 @@ function TestimonialCard({
           <span className="font-grotesk text-[13px] font-bold tracking-[1px] text-[#F5F5F0]">
             {name}
           </span>
-          <span className="font-ibm-mono text-[11px] tracking-[1px] text-[#555555]">
+          <span className="font-ibm-mono text-[11px] tracking-[1px] text-[#888888]">
             {role}
           </span>
         </div>

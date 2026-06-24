@@ -55,7 +55,7 @@ export default function Navbar() {
               href={link.href}
               aria-current={isActive(link.href) ? "page" : undefined}
               className="relative bg-transparent font-ibm-mono text-[10px] tracking-[1.5px] transition-colors duration-150"
-              style={{ color: isActive(link.href) ? "#FFD600" : "#555555" }}
+              style={{ color: isActive(link.href) ? "#FFD600" : "#888888" }}
             >
               {link.label}
               <span
@@ -69,7 +69,7 @@ export default function Navbar() {
         <div className="hidden items-center gap-[14px] lg:flex">
           <Link
             href="/faq/"
-            className="font-ibm-mono text-[10px] tracking-[1.5px] text-[#555555] transition-colors hover:text-[#F5F5F0]"
+            className="font-ibm-mono text-[10px] tracking-[1.5px] text-[#888888] transition-colors hover:text-[#F5F5F0]"
           >
             FAQ
           </Link>
