@@ -145,7 +145,7 @@ function CaseCard({
       <h3 className="font-grotesk text-[20px] font-bold leading-[1.2] tracking-[1px] whitespace-pre-line text-[#F5F5F0]">
         {slide.title}
       </h3>
-      <p className="font-ibm-mono text-[11px] tracking-[1px] text-[#555555]">{slide.by}</p>
+      <p className="font-ibm-mono text-[11px] tracking-[1px] text-[#888888]">{slide.by}</p>
     </MotionCard>
   );
 }

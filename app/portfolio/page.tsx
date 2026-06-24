@@ -59,7 +59,7 @@ export default function PortfolioPage() {
                 <span className="font-ibm-mono text-[11px] font-bold tracking-[2px] text-[#FFD600]">
                   [{String(index + 1).padStart(2, "0")}]
                 </span>
-                <span className="font-ibm-mono text-[10px] tracking-[2px] text-[#555555]">{item.type.toUpperCase()}</span>
+                <span className="font-ibm-mono text-[10px] tracking-[2px] text-[#888888]">{item.type.toUpperCase()}</span>
               </div>
               <h2 className="font-grotesk text-[28px] font-bold tracking-[-0.5px] text-[#F5F5F0]">
                 {item.title}

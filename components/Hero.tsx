@@ -62,8 +62,8 @@ export default function Hero() {
 
       <div className="h-6 md:h-[24px]" />
 
-      <p className="font-ibm-mono text-[11px] text-[#555555] tracking-[2px] text-center">
-        EST. {company.establishedYear} // DOMAIN REGISTERED {company.domainRegisteredDate} // {company.country.toUpperCase()}
+      <p className="font-ibm-mono text-[11px] text-[#888888] tracking-[2px] text-center">
+        EST. {company.establishedYear} // COMPANY REGISTERED {company.companyRegisteredDate} // {company.country.toUpperCase()}
       </p>
 
       <div className="h-12 md:h-[64px]" />
@@ -112,7 +112,7 @@ const tokens = [
   { name: "accent", hex: "#FF6B35" },
   { name: "surface", hex: "#111111" },
   { name: "text", hex: "#F5F5F0" },
-  { name: "muted", hex: "#555555" },
+  { name: "muted", hex: "#888888" },
 ];
 
 const codeLines = [
@@ -196,7 +196,7 @@ function DesignInterfaceSVG({ mounted }: { mounted: boolean }) {
               {l.active && <rect x="0" y={y} width="200" height="32" fill="#1E1E1E" />}
               {l.active && <rect x="0" y={y} width="2" height="32" fill="#FFD600" />}
               <circle cx={20 + l.indent} cy={y + 16} r="3" fill={l.color} opacity="0.8" />
-              <text x={32 + l.indent} y={y + 20} fontFamily="monospace" fontSize="9" fill={l.active ? "#F5F5F0" : "#555"} letterSpacing={0.5}>
+              <text x={32 + l.indent} y={y + 20} fontFamily="monospace" fontSize="9" fill={l.active ? "#F5F5F0" : "#888"} letterSpacing={0.5}>
                 {l.label}
               </text>
             </g>
@@ -220,7 +220,7 @@ function DesignInterfaceSVG({ mounted }: { mounted: boolean }) {
                 transition: `opacity 0.4s ease ${0.1 + i * 0.06}s`,
               }}
             >
-              <text x="912" y={y} fontFamily="monospace" fontSize="8" fill="#555" letterSpacing={1}>{p.key}</text>
+              <text x="912" y={y} fontFamily="monospace" fontSize="8" fill="#888" letterSpacing={1}>{p.key}</text>
               {p.swatch && <rect x="970" y={y - 9} width="10" height="10" fill={p.swatch} rx="1" />}
               <text x={p.swatch ? "986" : "970"} y={y} fontFamily="monospace" fontSize="8" fill="#888" letterSpacing={0.5}>{p.val}</text>
             </g>
@@ -257,7 +257,7 @@ function DesignInterfaceSVG({ mounted }: { mounted: boolean }) {
           </g>
         ))}
         <line x1="340" y1="11" x2="340" y2="25" stroke="#2D2D2D" strokeWidth="1" />
-        <text x="356" y="23" fontFamily="monospace" fontSize="9" fill="#555" letterSpacing={1}>100%</text>
+        <text x="356" y="23" fontFamily="monospace" fontSize="9" fill="#888" letterSpacing={1}>100%</text>
 
         {/* Rulers */}
         <rect x="200" y="36" width="700" height="16" fill="#131313" />
@@ -306,7 +306,7 @@ function DesignInterfaceSVG({ mounted }: { mounted: boolean }) {
         <rect x="310" y="236" width="100" height="24" fill="#FFD600" />
         <text x="325" y="252" fontFamily="monospace" fontSize="7" fill="#0A0A0A" fontWeight="700" letterSpacing={0.5}>INQUIRE</text>
         <rect x="418" y="236" width="90" height="24" fill="none" stroke="#3D3D3D" strokeWidth="1.5" />
-        <text x="430" y="252" fontFamily="monospace" fontSize="7" fill="#555" letterSpacing={0.5}>SERVICES</text>
+        <text x="430" y="252" fontFamily="monospace" fontSize="7" fill="#888" letterSpacing={0.5}>SERVICES</text>
 
         {/* Code editor block */}
         <rect x="310" y="280" width="490" height="168" fill="#161616" stroke="#222" strokeWidth="1" />
@@ -358,7 +358,7 @@ function DesignInterfaceSVG({ mounted }: { mounted: boolean }) {
         <line x1="200" y1="547" x2="900" y2="547" stroke="#222" strokeWidth="1" />
         <rect x="200" y="548" width="700" height="32" fill="#0D0D0D" />
         <circle className="hero-pulse" cx="220" cy="564" r="4" fill="#4ADE80" />
-        <text x="232" y="568" fontFamily="monospace" fontSize="8" fill="#555" letterSpacing={1}>READY</text>
+        <text x="232" y="568" fontFamily="monospace" fontSize="8" fill="#888" letterSpacing={1}>READY</text>
         <text x="330" y="568" fontFamily="monospace" fontSize="8" fill="#333" letterSpacing={1}>9 LAYERS</text>
         <text x="430" y="568" fontFamily="monospace" fontSize="8" fill="#333" letterSpacing={1}>SPRINT PLAN ON</text>
         <text x="600" y="568" fontFamily="monospace" fontSize="8" fill="#333" letterSpacing={1}>GRID: 12 COL</text>

@@ -61,7 +61,7 @@ export default function Footer() {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-ibm-mono text-[10px] font-bold tracking-[2px] text-[#555555] transition-colors hover:text-[#FFD600]"
+                  className="font-ibm-mono text-[10px] font-bold tracking-[2px] text-[#888888] transition-colors hover:text-[#FFD600]"
                 >
                   {link.label.toUpperCase()}
                 </a>

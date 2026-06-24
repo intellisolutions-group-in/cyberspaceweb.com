@@ -34,7 +34,7 @@ function StepCard({
       <h3 className="font-grotesk text-[20px] font-bold leading-[1.2] tracking-[1px] whitespace-pre-line text-[#F5F5F0]">
         {title}
       </h3>
-      <p className="font-ibm-mono text-[11px] leading-[1.5] tracking-[1px] text-[#555555]">
+      <p className="font-ibm-mono text-[11px] leading-[1.5] tracking-[1px] text-[#888888]">
         {description}
       </p>
     </MotionCard>

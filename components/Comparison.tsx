@@ -42,7 +42,7 @@ export default function Comparison() {
           </div>
           {["TEMPLATE", "FREELANCE", "AD HOC"].map((tool, index) => (
             <div key={tool} className={`flex flex-1 items-center px-[32px] ${index < 2 ? "border-r border-r-[#2D2D2D]" : ""}`}>
-              <span className="font-grotesk text-[11px] font-bold tracking-[2px] text-[#555555]">{tool}</span>
+              <span className="font-grotesk text-[11px] font-bold tracking-[2px] text-[#888888]">{tool}</span>
             </div>
           ))}
         </div>
@@ -82,10 +82,10 @@ export default function Comparison() {
             <span className="font-grotesk text-[9px] font-bold tracking-[1px] text-[#FFD600]">CSW</span>
           </div>
           <div className="px-2 py-3">
-            <span className="font-grotesk text-[9px] font-bold tracking-[1px] text-[#555555]">TMP</span>
+            <span className="font-grotesk text-[9px] font-bold tracking-[1px] text-[#888888]">TMP</span>
           </div>
           <div className="px-2 py-3">
-            <span className="font-grotesk text-[9px] font-bold tracking-[1px] text-[#555555]">FRCL</span>
+            <span className="font-grotesk text-[9px] font-bold tracking-[1px] text-[#888888]">FRCL</span>
           </div>
         </div>
         {rows.map((row, index) => (

@@ -11,7 +11,7 @@ import { values } from "@/data/process";
 import { breadcrumbSchema, webPageSchema } from "@/lib/schema";
 import { createPageMetadata } from "@/lib/seo";
 
-const description = `Learn about ${company.brandName}, an India-focused IT and software development company established from its 2004 domain foundation.`;
+const description = `Learn about ${company.brandName}, an India-focused IT and software development company established with its 2004 registration foundation.`;
 
 export const metadata: Metadata = createPageMetadata({
   title: `About ${company.brandName} | Software Development Company in India`,
@@ -43,9 +43,9 @@ export default function AboutPage() {
       />
       <PageHero
         label="[ABOUT] // COMPANY PROFILE"
-        title={`${company.brandName}\nBUILT ON A 2004 DIGITAL FOUNDATION.`}
+        title={`${company.brandName}\nBUILT ON A 2004 REGISTRATION FOUNDATION.`}
         description={`${company.brandName} is positioned as an India-focused IT and software development company for websites, applications, integrations, databases, and custom business systems.`}
-        meta={[`EST. ${company.establishedYear}`, `DOMAIN ${company.domainRegisteredDate}`, company.country.toUpperCase()]}
+        meta={[`EST. ${company.establishedYear}`, `COMPANY REGISTERED ${company.companyRegisteredDate}`, company.country.toUpperCase()]}
       />
 
       <ContentSection
@@ -59,7 +59,7 @@ export default function AboutPage() {
               {company.brandName} serves businesses that need dependable software rather than generic templates. The work can include a public website, a custom application, an internal portal, a mobile app, a database-backed workflow, an API integration, or a modernisation plan for older systems.
             </p>
             <p className="font-ibm-mono text-[13px] leading-[1.8] tracking-[1px] text-[#888888]">
-              The domain was registered on {company.domainRegisteredDate}, and the establishment year is set as {company.establishedYear} based on that foundation. This gives the brand a long digital presence while keeping the current website fresh, modern, and ready for software service growth in India.
+              The company was registered on {company.companyRegisteredDate}, and the establishment year is set as {company.establishedYear}. This gives the brand a long presence while keeping the current website fresh, modern, and ready for software service growth in India.
             </p>
             <p className="font-ibm-mono text-[13px] leading-[1.8] tracking-[1px] text-[#888888]">
               The aim is to help teams replace scattered manual work with clear digital systems, improve customer-facing experiences, and create software that can be maintained over time. We avoid false claims and unnecessary complexity; the focus is useful engineering with clean communication.

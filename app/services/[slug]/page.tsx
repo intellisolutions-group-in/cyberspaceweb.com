@@ -112,15 +112,15 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             </span>
             <div className="mt-7 flex flex-col gap-5">
               <div>
-                <span className="font-ibm-mono text-[10px] tracking-[2px] text-[#555555]">CATEGORY</span>
+                <span className="font-ibm-mono text-[10px] tracking-[2px] text-[#888888]">CATEGORY</span>
                 <p className="mt-2 font-grotesk text-[22px] font-bold text-[#F5F5F0]">{service.category}</p>
               </div>
               <div>
-                <span className="font-ibm-mono text-[10px] tracking-[2px] text-[#555555]">COUNTRY FOCUS</span>
+                <span className="font-ibm-mono text-[10px] tracking-[2px] text-[#888888]">COUNTRY FOCUS</span>
                 <p className="mt-2 font-grotesk text-[22px] font-bold text-[#F5F5F0]">{company.country}</p>
               </div>
               <div>
-                <span className="font-ibm-mono text-[10px] tracking-[2px] text-[#555555]">CONTACT</span>
+                <span className="font-ibm-mono text-[10px] tracking-[2px] text-[#888888]">CONTACT</span>
                 <p className="mt-2 font-grotesk text-[18px] font-bold text-[#FFD600]">{company.email}</p>
               </div>
             </div>

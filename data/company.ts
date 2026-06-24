@@ -21,7 +21,7 @@ export const company = {
   url: "https://cyberspaceweb.com",
   country: "India",
   industry: "IT / Software Development",
-  domainRegisteredDate: "2004-04-26",
+  companyRegisteredDate: "2004-04-26",
   establishedYear: "2004",
   email: "info@cyberspaceweb.com",
   businessHours: "Monday to Saturday, 10:00 AM to 7:00 PM IST",
@@ -49,7 +49,7 @@ export function isConfigured(value: string | undefined | null): value is string 
 
 /** Full years since domain registration date (conservative, anniversary-aware). */
 export function getYearsSinceEstablishment(asOf = new Date()): number {
-  const registered = new Date(`${company.domainRegisteredDate}T00:00:00`);
+  const registered = new Date(`${company.companyRegisteredDate}T00:00:00`);
   let years = asOf.getFullYear() - registered.getFullYear();
   const ordinal = (date: Date) => date.getMonth() * 100 + date.getDate();
   if (ordinal(asOf) < ordinal(registered)) years -= 1;
