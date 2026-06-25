@@ -92,7 +92,7 @@ export default function Footer() {
 
       <div className="flex w-full flex-col items-start justify-between gap-3 border-t border-t-[#1D1D1D] px-6 py-4 sm:flex-row sm:items-center md:h-[56px] md:px-[120px]">
         <span className="font-ibm-mono text-[11px] tracking-[1px] text-[#666666]">
-          &copy; 2026 {company.brandName}. ALL RIGHTS RESERVED.
+          Copyright &copy; {company.establishedYear}- {new Date().getFullYear()} {company.brandName}. All Rights Reserved.
         </span>
         <div className="flex items-center gap-6 md:gap-[32px]">
           <Link href="/privacy/" className="font-ibm-mono text-[11px] tracking-[1px] text-[#666666] transition-colors hover:text-[#AAAAAA]">
